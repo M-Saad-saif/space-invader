@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/remixicon.css" rel="stylesheet" />
+
+    <title>Space Invader|Canvas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+
+        }
+
+        .UI {
+            position: fixed;
+            background-color: black;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            justify-self: anchor-center;
+            width: 100%;
+            height: 100%;
+
+        }
+
+        #BTN {
+            width: 59%;
+            /* padding: 0px; */
+            background: #4c4cffdd;
+            color: white;
+            border-radius: 12px;
+            font-size: 16.5px;
+            transition: transform 0.5s ease, background-color 0.5s ease, box-shadow 0.5s ease;
+            box-shadow: 2px 3px 8px #4c4cffdd;
+
+        }
+
+        #BTN:hover {
+            transform: scale(1.05);
+            background-color: blue;
+            box-shadow: 10px 10px 10px blue;
+            cursor: pointer;
+        }
+
+        #image {
+            cursor: pointer;
+            width: 30%;
+            object-fit: contain;
+            image-rendering: pixelated;
+            left: 15%;
+            position: absolute;
+            box-shadow: 12px 12px 12px rgba(0, 0, 255, 0.356);
+            border-radius: 50%;
+            /* transition: transform 0.3s ease, box-shadow 0.3s ease;*/
+            animation: saad 0.5s infinite alternate;
+        }
+
+        @keyframes saad {
+            0% {
+                box-shadow: 12px 12px 12px rgba(0, 0, 255, 0.350);
+            }
+
+            10% {
+                box-shadow: 12px 12px 12px rgba(0, 0, 255, 0.427);
+
+            }
+
+            20% {
+                box-shadow: 12px 12px 12px rgba(0, 0, 255, 0.525);
+            }
+
+            30% {
+                box-shadow: 12px 12px 12px rgba(0, 0, 255, 0.650);
+            }
+
+            40% {
+                box-shadow: 12px 12px 12px rgba(0, 0, 255, 0.800);
+            }
+
+            50% {
+                box-shadow: 12px 12px 12px rgba(0, 0, 255, 0.950);
+            }
+
+            60% {
+                box-shadow: 12px 12px 12px rgba(0, 0, 255, 1);
+            }
+
+            70% {
+                box-shadow: 12px 12px 12px rgba(0, 0, 255, 1.2);
+            }
+
+            80% {
+                box-shadow: 12px 12px 12px rgba(0, 0, 255, 1.5);
+            }
+
+            90% {
+                box-shadow: 12px 12px 12px rgba(0, 0, 255, 1.8);
+            }
+
+            100% {
+                box-shadow: 12px 12px 12px rgba(0, 0, 255, 2);
+            }
+
+
+        }
+
+        h2 {
+            position: absolute;
+            display: flex;
+            top: 0;
+            background: linear-gradient(180deg, #0800ff, transparent);
+            text-align: center;
+            justify-content: center;
+            padding: 10px;
+            width: 100%;
+            left: 0;
+            color: white;
+            letter-spacing: 2px;
+            font-size: 36px;
+        }
+
+        h2 i {
+            color: red;
+        }
+
+        div {
+            width: 35%;
+        }
+
+        #points {
+            font-size: 50px;
+            font-weight: bold;
+            color: white;
+        }
+
+        p {
+            font-size: 19px;
+            font-weight: 100;
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <div class="UI">
+        <div class="heading">
+            <h2>Space Invader<i class="ri-rocket-2-line"></i></h2>
+        </div>
+
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJypOoSDfou31jGjya2y94NodthE-0444njk8-5eMtXPCCje5wRSulfSFX0BZvZ-bZuK4&usqp=CAU"
+            alt="" id="image">
+        <div>
+            <p><span id="points">00</span> Points </p>
+            <button id="BTN">Start New Game</button>
+        </div>
+
+    </div>
+    <canvas></canvas>
+
+    <script src="space invader.js"></script>
+
+
+</body>
+
+</html>
