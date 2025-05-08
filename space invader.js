@@ -4,6 +4,10 @@ let scoreboard = document.querySelector("#points");
 
 let canvas = document.querySelector("canvas");
 let c = canvas.getContext("2d");
+let arrwo_lft_btn = document.querySelector("#leftbtn");
+let arrwo_rgt_btn = document.querySelector("#rightbtn");
+let moving_btns = document.querySelector("#btns");
+let fireBtn = document.querySelector("#fireBtn");
 
 canvas.width = innerWidth;
 canvas.height = innerHeight;
@@ -14,6 +18,11 @@ let points = 0;
 //   "https://static.vecteezy.com/system/resources/previews/014/744/954/non_2x/abstract-purple-neon-light-line-geometric-cyber-dynamic-slash-on-grey-black-circuit-design-modern-futuristic-technology-background-vector.jpg";
 
 // create player class
+
+window.addEventListener("resize", () => {
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+});
 
 class Player {
   constructor() {
@@ -161,12 +170,16 @@ class Invader {
     };
 
     let invaderImage = new Image();
-    invaderImage.src =
-      "invaderpic.jpg";
+    invaderImage.src = "invaderpic.jpg";
 
     //   seting image width and height on loading the screen
     invaderImage.onload = () => {
       let scaleofImage = 0.08;
+
+      // for mobile
+      if (window.innerWidth <= 500 && window.innerWidth >= 315) {
+        scaleofImage = 0.045;
+      }
       this.Image = invaderImage;
       this.width = invaderImage.width * scaleofImage;
       this.height = invaderImage.height * scaleofImage;
@@ -230,33 +243,63 @@ class Grid {
 
     // 1) x loop for coloumns
     // 2) y loop for rows
-    let coloumns = Math.floor(Math.random() * 8 + 5);
-    let rows = Math.floor(Math.random() * 2 + 2);
 
-    this.width = coloumns * 69;
+    // for mobiles
+    if (window.innerWidth <= 500 && window.innerWidth >= 315) {
+      let coloumns = Math.floor(Math.random() * 3 + 3);
+      let rows = Math.floor(Math.random() * 3 + 3);
 
-    for (let x = 0; x < coloumns; x++) {
-      for (let y = 0; y < rows; y++) {
-        this.invaders.push(
-          new Invader({
-            position: {
-              x: x * 75,
-              y: y * 75,
-            },
-          })
-        );
+      this.width = coloumns * 37;
+
+      for (let x = 0; x < coloumns; x++) {
+        for (let y = 0; y < rows; y++) {
+          this.invaders.push(
+            new Invader({
+              position: {
+                x: x * 45,
+                y: y * 30,
+              },
+            })
+          );
+        }
+      }
+    } else {
+      //for laptops
+      let coloumns = Math.floor(Math.random() * 8 + 5);
+      let rows = Math.floor(Math.random() * 2 + 2);
+
+      this.width = coloumns * 69;
+
+      for (let x = 0; x < coloumns; x++) {
+        for (let y = 0; y < rows; y++) {
+          this.invaders.push(
+            new Invader({
+              position: {
+                x: x * 75,
+                y: y * 75,
+              },
+            })
+          );
+        }
       }
     }
   }
+
   update() {
     this.position.x += this.velocity.x;
     this.position.y += this.velocity.y;
 
     this.velocity.y = 0.099;
-
-    if (this.position.x + this.width >= canvas.width || this.position.x < 0) {
-      this.velocity.x = -this.velocity.x;
-      this.velocity.y = 30;
+    if (window.innerWidth <= 500 && window.innerWidth >= 315) {
+      if (this.position.x + this.width >= canvas.width || this.position.x < 4) {
+        this.velocity.x = -this.velocity.x;
+        this.velocity.y = 25;
+      }
+    } else {
+      if (this.position.x + this.width >= canvas.width || this.position.x < 0) {
+        this.velocity.x = -this.velocity.x;
+        this.velocity.y = 30;
+      }
     }
   }
 }
@@ -327,6 +370,8 @@ function createParticles({ object, color, fades }) {
 }
 
 // whole animation of the game
+moving_btns.style.display = "none";
+
 let animationId;
 function animation() {
   if (!game.active) return;
@@ -380,6 +425,7 @@ function animation() {
         player.opacity = 0;
         invaderProjectiles.splice(index, 1);
         game.over = true;
+        moving_btns.style.display = "none";
       }, 0);
 
       // stopping animation
@@ -465,18 +511,35 @@ function animation() {
   // moving player left right within their canvas boundires
   let shipPadding = 25;
 
-  if (keys.arrowLeft.pressed && player.position.x >= -shipPadding) {
-    player.velocity.x = -8.5;
-    player.rotaion = -0.3;
-  } else if (
-    keys.arrowRight.pressed &&
-    player.position.x + player.width <= canvas.width + shipPadding
-  ) {
-    player.velocity.x = 8.5;
-    player.rotaion = 0.3;
+  if (window.innerWidth >= 500) {
+    if (keys.arrowLeft.pressed && player.position.x >= -shipPadding) {
+      player.velocity.x = -8.5;
+      player.rotaion = -0.3;
+    } else if (
+      keys.arrowRight.pressed &&
+      player.position.x + player.width <= canvas.width + shipPadding
+    ) {
+      player.velocity.x = 8.5;
+      player.rotaion = 0.3;
+    } else {
+      player.velocity.x = 0;
+      player.rotaion = 0;
+    }
   } else {
-    player.velocity.x = 0;
-    player.rotaion = 0;
+    // controls  for mobile
+    if (movelft && player.position.x >= -shipPadding) {
+      player.velocity.x = -8.5;
+      player.rotaion = -0.3;
+    } else if (
+      movergt &&
+      player.position.x + player.width <= canvas.width + shipPadding
+    ) {
+      player.velocity.x = 8.5;
+      player.rotaion = 0.3;
+    } else {
+      player.velocity.x = 0;
+      player.rotaion = 0;
+    }
   }
 
   // calling new invaders
@@ -490,7 +553,7 @@ function animation() {
 }
 // animation();
 
-// eventlistener
+// eventlistener for laptop
 addEventListener("keydown", (e) => {
   if (game.over) return;
   switch (e.key) {
@@ -521,21 +584,7 @@ addEventListener("keydown", (e) => {
       break;
   }
 });
-// for mobile
-addEventListener("click", () => {
-  projectiles.push(
-    new Projectile({
-      position: {
-        x: player.position.x + player.width / 2,
-        y: player.position.y + player.height - 90,
-      },
-      velocity: {
-        x: 0,
-        y: -12,
-      },
-    })
-  );
-});
+
 addEventListener("keyup", (e) => {
   switch (e.key) {
     case "ArrowLeft":
@@ -551,10 +600,43 @@ addEventListener("keyup", (e) => {
   }
 });
 
+// fire for mobile
+let isFiring = false;
+let firePointerID = null;
+fireBtn.addEventListener("pointerdown", (e) => {
+  if (!isFiring) {
+    isFiring = true;
+    firePointerID = e.pointerid;
+  }
+});
+
+fireBtn.addEventListener("pointerup", (e) => {
+  if (e.pointerid === firePointerID) {
+    isFiring = false;
+    firePointerID = null;
+
+    projectiles.push(
+      new Projectile({
+        position: {
+          x: player.position.x + player.width / 2,
+          y: player.position.y + player.height / 2,
+        },
+        velocity: {
+          x: 0,
+          y: -8,
+        },
+      })
+    );
+  }
+});
+
+
 function newGame() {
   newGameBtn.addEventListener("click", () => {
     UI.style.display = "none";
     scoreboard.innerHTML = "00";
+
+    moving_btns.style.display = "block";
 
     points = 0;
     player = new Player();
@@ -590,3 +672,32 @@ function newGame() {
   });
 }
 newGame();
+
+// btns for moving left for mobile
+let movelft = false;
+let movergt = false;
+
+arrwo_lft_btn.addEventListener("touchstart", () => {
+  player.velocity.x = -8.5;
+  player.rotaion = -0.3;
+  movelft = true;
+});
+
+arrwo_lft_btn.addEventListener("touchend", () => {
+  player.velocity.x = 0;
+  player.rotaion = 0;
+  movelft = false;
+});
+
+// btns for moving right
+arrwo_rgt_btn.addEventListener("touchstart", () => {
+  player.velocity.x = -8.5;
+  player.rotaion = -0.3;
+  movergt = true;
+});
+
+arrwo_rgt_btn.addEventListener("touchend", () => {
+  player.velocity.x = 0;
+  player.rotaion = 0;
+  movergt = false;
+});
