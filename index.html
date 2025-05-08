@@ -22,6 +22,7 @@
         canvas {
             width: 100%;
             height: 100%;
+            z-index: 0;
 
         }
 
@@ -69,6 +70,10 @@
             border-radius: 50%;
             /* transition: transform 0.3s ease, box-shadow 0.3s ease;*/
             animation: saad 0.5s infinite alternate;
+        }
+
+        #btns {
+            display: none;
         }
 
         @keyframes saad {
@@ -154,6 +159,110 @@
             font-weight: 100;
             color: white;
         }
+
+        #fireBtn {
+            display: none;
+        }
+
+        @media screen and (max-width: 500px) and (min-width: 350px) {
+
+
+            canvas {
+                width: 100%;
+                height: 100%;
+                z-index: 0;
+
+            }
+
+            #image {
+                cursor: pointer;
+                width: 60%;
+                object-fit: contain;
+                image-rendering: pixelated;
+                margin-top: -80%;
+                left: 15%;
+                position: static;
+                box-shadow: 12px 12px 12px rgba(0, 0, 255, 0.356);
+                border-radius: 50%;
+                animation: saad 0.5s infinite alternate;
+                justify-self: center;
+                position: absolute;
+            }
+
+
+            p {
+                font-size: 19px;
+                font-weight: 100;
+                color: white;
+                position: absolute;
+                /* left: 41%; */
+                justify-content: center;
+                justify-self: anchor-center;
+
+            }
+
+
+            #BTN {
+                width: 68%;
+                /* padding: 0px; */
+                background: #4c4cffdd;
+                color: white;
+                position: absolute;
+                border-radius: 12px;
+                font-size: 16.5px;
+                transition: transform 0.5s ease, background-color 0.5s ease, box-shadow 0.5s ease;
+                box-shadow: 2px 3px 8px #4c4cffdd;
+                margin-top: 5pc;
+                /* left: -4%; */
+                justify-self: anchor-center;
+
+            }
+
+            #btns {
+
+                /*   display: flex;*/
+                position: fixed;
+                bottom: 5%;
+                right: -10%;
+                gap: 2px;
+                z-index: 15;
+                padding: 12px;
+
+            }
+
+            #btns i {
+                font-size: 20px;
+            }
+
+            #leftbtn {
+                padding: 12px;
+                border-top-left-radius: 9px;
+                background-color: rgb(220, 220, 250);
+            }
+
+            #rightbtn {
+                border-bottom-right-radius: 9px;
+                padding: 12px;
+                background-color: rgb(251, 197, 197);
+            }
+
+            #fireBtn {
+                display: flex;
+                position: fixed;
+                left: 3%;
+                bottom: 5.5%;
+                padding: 12px;
+                background-color:rgb(220, 220, 250) ;
+
+            }
+            #fireBtn i{
+                font-size: 20px; 
+                color: red;
+                font-weight: bold;
+
+
+            }
+        }
     </style>
 
 </head>
@@ -173,6 +282,15 @@
             <button id="BTN">Start New Game</button>
         </div>
 
+
+    </div>
+
+    <div id="btns">
+        <button id="leftbtn"><i class="ri-arrow-left-fill"></i></button>
+        <button id="rightbtn"><i class="ri-arrow-right-fill"></i></button>
+
+
+        <button id="fireBtn"><i class="ri-circle-line"></i></button>
     </div>
     <canvas></canvas>
 
