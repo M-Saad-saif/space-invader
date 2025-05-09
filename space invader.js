@@ -636,7 +636,7 @@ function newGame() {
     UI.style.display = "none";
     scoreboard.innerHTML = "00";
 
-    moving_btns.style.display = "block";
+    moving_btns.style.display = "flex";
 
     points = 0;
     player = new Player();
