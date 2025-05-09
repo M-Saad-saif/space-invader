@@ -8,21 +8,22 @@ let arrwo_lft_btn = document.querySelector("#leftbtn");
 let arrwo_rgt_btn = document.querySelector("#rightbtn");
 let moving_btns = document.querySelector("#btns");
 let fireBtn = document.querySelector("#fireBtn");
+let prsntattionUI = document.querySelector("#presentationUI");
 
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 
 let points = 0;
-// let canvasBG = new Image();
-// canvasBG.src =
-//   "https://static.vecteezy.com/system/resources/previews/014/744/954/non_2x/abstract-purple-neon-light-line-geometric-cyber-dynamic-slash-on-grey-black-circuit-design-modern-futuristic-technology-background-vector.jpg";
 
-// create player class
+prsntattionUI.addEventListener("click", () => {
+  prsntattionUI.style.display = "none";
+});
 
 window.addEventListener("resize", () => {
   canvas.width = innerWidth;
   canvas.height = innerHeight;
 });
+// create player class
 
 class Player {
   constructor() {
@@ -629,7 +630,6 @@ fireBtn.addEventListener("pointerup", (e) => {
     );
   }
 });
-
 
 function newGame() {
   newGameBtn.addEventListener("click", () => {
