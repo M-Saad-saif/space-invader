@@ -40,11 +40,12 @@
 
         }
 
-        #leftbtn{
+        #leftbtn {
 
             display: none;
         }
-        #rightbtn{
+
+        #rightbtn {
             display: none;
         }
 
@@ -160,13 +161,14 @@
         #btns {
             display: none;
         }
+
         .UI #hdinglogo {
-    position: absolute;
-    top: -8px;
-    left: 14px;
-    width: 67px;
-    z-index: 11;
-}
+            position: absolute;
+            top: -8px;
+            left: 14px;
+            width: 67px;
+            z-index: 11;
+        }
 
         @keyframes saad {
             0% {
@@ -313,13 +315,14 @@
 
             #btns {
 
-                /*   display: flex;*/
                 position: fixed;
                 bottom: 5%;
                 right: -10%;
                 gap: 2px;
                 z-index: 15;
                 padding: 12px;
+                display: flex;
+                flex-direction: row;
 
             }
 
@@ -328,12 +331,18 @@
             }
 
             #leftbtn {
+                display: flex;
+                flex-direction: row;
+
                 padding: 12px;
                 border-top-left-radius: 9px;
                 background-color: rgb(220, 220, 250);
             }
 
             #rightbtn {
+                display: flex;
+                flex-direction: row;
+
                 border-bottom-right-radius: 9px;
                 padding: 12px;
                 background-color: rgb(251, 197, 197);
@@ -375,7 +384,7 @@
                 width: 100%;
             }
 
-            h2{
+            h2 {
                 width: 114%;
             }
 
@@ -399,9 +408,9 @@
 
     <div class="UI">
 
-        <div class="heading"> 
-                  
-            <h2>  <img src="game.png" alt="" srcset="" id="hdinglogo">Space Invader<i class="ri-rocket-2-line"></i></h2>
+        <div class="heading">
+
+            <h2> <img src="game.png" alt="" srcset="" id="hdinglogo">Space Invader<i class="ri-rocket-2-line"></i></h2>
         </div>
 
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJypOoSDfou31jGjya2y94NodthE-0444njk8-5eMtXPCCje5wRSulfSFX0BZvZ-bZuK4&usqp=CAU"
