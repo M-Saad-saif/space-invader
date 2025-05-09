@@ -40,6 +40,91 @@
 
         }
 
+        #leftbtn{
+
+            display: none;
+        }
+        #rightbtn{
+            display: none;
+        }
+
+
+        #presentationUI::before {
+            content: "";
+            height: 100%;
+            width: 100%;
+            top: 0;
+            right: 0;
+            position: absolute;
+            display: flex;
+            background: url("bg.jpg");
+            background-size: 101% 100%;
+            image-rendering: pixelated;
+            z-index: -1;
+            opacity: 0.5;
+
+
+        }
+
+        #presentationUI {
+
+            background-color: black;
+            position: fixed;
+            justify-content: center;
+            justify-self: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            z-index: 12;
+            align-self: center;
+        }
+
+        #preUI {
+            width: 25%;
+            margin-top: 5%;
+            justify-content: center;
+            position: absolute;
+            display: flex;
+            justify-self: anchor-center;
+
+
+        }
+
+        #saadUI {
+            margin-left: 8px;
+            margin-right: 8px;
+            color: #f20000;
+            font-weight: bold;
+            text-shadow: 1px 0px 13px red;
+            font-size: 20px;
+        }
+
+        #preUIpara {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            justify-self: anchor-center;
+            margin-top: 28%;
+            left: -29px;
+            letter-spacing: 2px;
+        }
+
+        #startUI {
+
+            width: 25%;
+            margin-top: 5%;
+            justify-content: center;
+            position: absolute;
+            display: flex;
+            justify-self: anchor-center;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            justify-self: anchor-center;
+            margin-top: 35%;
+            left: -21px;
+        }
+
         #BTN {
             width: 59%;
             /* padding: 0px; */
@@ -75,6 +160,13 @@
         #btns {
             display: none;
         }
+        .UI #hdinglogo {
+    position: absolute;
+    top: -8px;
+    left: 14px;
+    width: 67px;
+    z-index: 11;
+}
 
         @keyframes saad {
             0% {
@@ -164,7 +256,8 @@
             display: none;
         }
 
-        @media screen and (max-width: 500px) and (min-width: 350px) {
+
+        @media screen and (max-width: 500px) and (min-width: 340px) {
 
 
             canvas {
@@ -252,16 +345,40 @@
                 left: 3%;
                 bottom: 5.5%;
                 padding: 12px;
-                background-color:rgb(220, 220, 250) ;
+                background-color: rgb(220, 220, 250);
 
             }
-            #fireBtn i{
-                font-size: 20px; 
+
+            #fireBtn i {
+                font-size: 20px;
                 color: red;
                 font-weight: bold;
 
 
             }
+
+            #preUI {
+                width: 69%;
+                margin-top: 42%;
+                justify-content: center;
+                position: absolute;
+                display: flex;
+                justify-self: anchor-center;
+            }
+
+            #preUIpara {
+                margin-top: 108%;
+            }
+
+            #startUI {
+                margin-top: 150%;
+                width: 100%;
+            }
+
+            h2{
+                width: 114%;
+            }
+
         }
     </style>
 
@@ -270,9 +387,21 @@
 <body>
 
 
+    <div id="presentationUI">
+        <div>
+            <img src="game.png" alt="" srcset="" id="preUI">
+
+        </div>
+        <p id="preUIpara">Welcome to <span id="saadUI"> SAAD </span> plays</p>
+        <p id="startUI">Tap to start...</p>
+
+    </div>
+
     <div class="UI">
-        <div class="heading">
-            <h2>Space Invader<i class="ri-rocket-2-line"></i></h2>
+
+        <div class="heading"> 
+                  
+            <h2>  <img src="game.png" alt="" srcset="" id="hdinglogo">Space Invader<i class="ri-rocket-2-line"></i></h2>
         </div>
 
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJypOoSDfou31jGjya2y94NodthE-0444njk8-5eMtXPCCje5wRSulfSFX0BZvZ-bZuK4&usqp=CAU"
