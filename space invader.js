@@ -626,9 +626,7 @@ fireBtn.addEventListener("pointerdown", (e) => {
 
     
   }
-      let popsoundMOB = document.createElement("audio");
-      popsoundMOB.src = "plop.ogg";
-      popsoundMOB.play();
+    
 });
 
 fireBtn.addEventListener("pointerup", (e) => {
