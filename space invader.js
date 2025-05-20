@@ -623,10 +623,12 @@ fireBtn.addEventListener("pointerdown", (e) => {
   if (!isFiring) {
     isFiring = true;
     firePointerID = e.pointerid;
-  }
-      let popsound = document.createElement("audio");
+
+     let popsound = document.createElement("audio");
       popsound.src = "plop.ogg";
       popsound.play();
+  }
+     
 });
 
 fireBtn.addEventListener("pointerup", (e) => {
