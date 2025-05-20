@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/remixicon.css" rel="stylesheet" />
+
+    <title>Space Invader|Canvas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+
+        }
+
+        .UI {
+            position: fixed;
+            background-color: black;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            justify-self: anchor-center;
+            width: 100%;
+            height: 100%;
+
+        }
+
+        #leftbtn {
+
+            display: none;
+        }
+
+        #rightbtn {
+            display: none;
+        }
+
+
+        #presentationUI::before {
+            content: "";
+            height: 100%;
+            width: 100%;
+            top: 0;
+            right: 0;
+            position: absolute;
+            display: flex;
+            background: url("bg.jpg");
+            background-size: 101% 100%;
+            image-rendering: pixelated;
+            z-index: -1;
+            opacity: 0.5;
+
+
+        }
+
+        #presentationUI {
+
+            background-color: black;
+            position: fixed;
+            justify-content: center;
+            justify-self: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            z-index: 12;
+            align-self: center;
+        }
+
+        #preUI {
+            width: 25%;
+            margin-top: 5%;
+            justify-content: center;
+            position: absolute;
+            display: flex;
+            justify-self: anchor-center;
+
+
+        }
+
+        #saadUI {
+            margin-left: 8px;
+            margin-right: 8px;
+            color: #f20000;
+            font-weight: bold;
+            text-shadow: 1px 0px 13px red;
+            font-size: 20px;
+        }
+
+        #preUIpara {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            justify-self: anchor-center;
+            margin-top: 28%;
+            left: -29px;
+            letter-spacing: 2px;
+        }
+
+        #startUI {
+
+            width: 25%;
+            margin-top: 5%;
+            justify-content: center;
+            position: absolute;
+            display: flex;
+            justify-self: anchor-center;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            justify-self: anchor-center;
+            margin-top: 35%;
+            left: -21px;
+        }
+
+        #BTN {
+            width: 59%;
+            /* padding: 0px; */
+            background: #4c4cffdd;
+            color: white;
+            border-radius: 12px;
+            font-size: 16.5px;
+            transition: transform 0.5s ease, background-color 0.5s ease, box-shadow 0.5s ease;
+            box-shadow: 2px 3px 8px #4c4cffdd;
+
+        }
+
+        #BTN:hover {
+            transform: scale(1.05);
+            background-color: blue;
+            box-shadow: 10px 10px 10px blue;
+            cursor: pointer;
+        }
+
+        #image {
+            cursor: pointer;
+            width: 30%;
+            object-fit: contain;
+            image-rendering: pixelated;
+            left: 15%;
+            position: absolute;
+            box-shadow: 12px 12px 12px rgba(0, 0, 255, 0.356);
+            border-radius: 50%;
+            /* transition: transform 0.3s ease, box-shadow 0.3s ease;*/
+            animation: saad 0.5s infinite alternate;
+        }
+
+        #btns {
+            display: none;
+        }
+
+        .UI #hdinglogo {
+            position: absolute;
+            top: -8px;
+            left: 14px;
+            width: 67px;
+            z-index: 11;
+        }
+
+        @keyframes saad {
+            0% {
+                box-shadow: 12px 12px 12px rgba(0, 0, 255, 0.350);
+            }
+
+            10% {
+                box-shadow: 12px 12px 12px rgba(0, 0, 255, 0.427);
+
+            }
+
+            20% {
+                box-shadow: 12px 12px 12px rgba(0, 0, 255, 0.525);
+            }
+
+            30% {
+                box-shadow: 12px 12px 12px rgba(0, 0, 255, 0.650);
+            }
+
+            40% {
+                box-shadow: 12px 12px 12px rgba(0, 0, 255, 0.800);
+            }
+
+            50% {
+                box-shadow: 12px 12px 12px rgba(0, 0, 255, 0.950);
+            }
+
+            60% {
+                box-shadow: 12px 12px 12px rgba(0, 0, 255, 1);
+            }
+
+            70% {
+                box-shadow: 12px 12px 12px rgba(0, 0, 255, 1.2);
+            }
+
+            80% {
+                box-shadow: 12px 12px 12px rgba(0, 0, 255, 1.5);
+            }
+
+            90% {
+                box-shadow: 12px 12px 12px rgba(0, 0, 255, 1.8);
+            }
+
+            100% {
+                box-shadow: 12px 12px 12px rgba(0, 0, 255, 2);
+            }
+
+
+        }
+
+        h2 {
+            position: absolute;
+            display: flex;
+            top: 0;
+            background: linear-gradient(180deg, #0800ff, transparent);
+            text-align: center;
+            justify-content: center;
+            padding: 10px;
+            width: 100%;
+            left: 0;
+            color: white;
+            letter-spacing: 2px;
+            font-size: 36px;
+        }
+
+        h2 i {
+            color: red;
+        }
+
+        div {
+            width: 35%;
+        }
+
+        #points {
+            font-size: 50px;
+            font-weight: bold;
+            color: white;
+        }
+
+        p {
+            font-size: 19px;
+            font-weight: 100;
+            color: white;
+        }
+
+        #fireBtn {
+            display: none;
+        }
+
+
+        @media screen and (max-width: 500px) and (min-width: 340px) {
+
+
+            canvas {
+                width: 100%;
+                height: 100%;
+                z-index: 0;
+
+            }
+
+            #image {
+                cursor: pointer;
+                width: 60%;
+                object-fit: contain;
+                image-rendering: pixelated;
+                margin-top: -80%;
+                left: 15%;
+                position: static;
+                box-shadow: 12px 12px 12px rgba(0, 0, 255, 0.356);
+                border-radius: 50%;
+                animation: saad 0.5s infinite alternate;
+                justify-self: center;
+                position: absolute;
+            }
+
+
+            p {
+                font-size: 19px;
+                font-weight: 100;
+                color: white;
+                position: absolute;
+                /* left: 41%; */
+                justify-content: center;
+                justify-self: anchor-center;
+
+            }
+
+
+            #BTN {
+                width: 68%;
+                /* padding: 0px; */
+                background: #4c4cffdd;
+                color: white;
+                position: absolute;
+                border-radius: 12px;
+                font-size: 16.5px;
+                transition: transform 0.5s ease, background-color 0.5s ease, box-shadow 0.5s ease;
+                box-shadow: 2px 3px 8px #4c4cffdd;
+                margin-top: 5pc;
+                /* left: -4%; */
+                justify-self: anchor-center;
+
+            }
+
+            #btns {
+
+                position: fixed;
+                bottom: 5%;
+                right: -10%;
+                gap: 2px;
+                z-index: 15;
+                padding: 12px;
+                display: flex;
+                flex-direction: row;
+
+            }
+
+            #btns i {
+                font-size: 20px;
+            }
+
+            #leftbtn {
+                display: flex;
+                flex-direction: row;
+
+                padding: 12px;
+                border-top-left-radius: 9px;
+                background-color: rgb(220, 220, 250);
+            }
+
+            #rightbtn {
+                display: flex;
+                flex-direction: row;
+
+                border-bottom-right-radius: 9px;
+                padding: 12px;
+                background-color: rgb(251, 197, 197);
+            }
+
+            #fireBtn {
+                display: flex;
+                position: fixed;
+                left: 3%;
+                bottom: 5.5%;
+                padding: 12px;
+                background-color: rgb(220, 220, 250);
+
+            }
+
+            #fireBtn i {
+                font-size: 20px;
+                color: red;
+                font-weight: bold;
+
+
+            }
+
+            #preUI {
+                width: 69%;
+                margin-top: 42%;
+                justify-content: center;
+                position: absolute;
+                display: flex;
+                justify-self: anchor-center;
+            }
+
+            #preUIpara {
+                margin-top: 108%;
+            }
+
+            #startUI {
+                margin-top: 150%;
+                width: 100%;
+            }
+
+            h2 {
+                width: 114%;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <div id="presentationUI">
+        <div>
+            <img src="game.png" alt="" srcset="" id="preUI">
+
+        </div>
+        <p id="preUIpara">Welcome to <span id="saadUI"> SAAD </span> plays</p>
+        <p id="startUI">Tap to start...</p>
+
+    </div>
+
+    <div class="UI">
+
+        <div class="heading">
+
+            <h2> <img src="game.png" alt="" srcset="" id="hdinglogo">Space Invader<i class="ri-rocket-2-line"></i></h2>
+        </div>
+
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJypOoSDfou31jGjya2y94NodthE-0444njk8-5eMtXPCCje5wRSulfSFX0BZvZ-bZuK4&usqp=CAU"
+            alt="" id="image">
+        <div>
+            <p><span id="points">00</span> Points </p>
+            <button id="BTN">Start New Game</button>
+        </div>
+
+
+    </div>
+
+    <div id="btns">
+        <button id="leftbtn"><i class="ri-arrow-left-fill"></i></button>
+        <button id="rightbtn"><i class="ri-arrow-right-fill"></i></button>
+
+
+        <button id="fireBtn"><i class="ri-circle-line"></i></button>
+    </div>
+    <canvas></canvas>
+
+    <script src="space invader.js"></script>
+
+
+</body>
+
+</html>
