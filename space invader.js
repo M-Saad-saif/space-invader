@@ -581,7 +581,7 @@ addEventListener("keydown", (e) => {
 
     case "ArrowUp":
       let popsound = document.createElement('audio');
-      popsound.src = "plop.ogg";
+      popsound.src = "Plop.ogg";
       popsound.play();
 
       // pushing projectle to projectiles array when pressing spacebar
