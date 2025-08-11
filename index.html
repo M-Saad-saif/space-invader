@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/remixicon.css" rel="stylesheet" />
+    <link rel="icon" href="spaceinvader-icon.ico" type="image/x-icon">
 
     <title>Space Invader|Canvas</title>
     <style>
@@ -68,7 +69,6 @@
         }
 
         #presentationUI {
-
             background-color: black;
             position: fixed;
             justify-content: center;
@@ -76,6 +76,7 @@
             align-items: center;
             width: 100%;
             height: 100%;
+            right: 0;
             z-index: 12;
             align-self: center;
         }
@@ -87,8 +88,6 @@
             position: absolute;
             display: flex;
             justify-self: anchor-center;
-
-
         }
 
         #saadUI {
@@ -433,7 +432,18 @@
     <canvas></canvas>
 
     <script src="space invader.js"></script>
-
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then((reg) => {
+                        console.log('✅ Service Worker registered at', reg.scope);
+                    }).catch((err) => {
+                        console.log('❌ Service Worker registration failed:', err);
+                    });
+            });
+        }
+    </script>
 
 </body>
 
